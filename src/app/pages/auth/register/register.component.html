@@ -1,1 +1,229 @@
-<p>register works!</p>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetSport - Create Account</title>
+    <!-- Archivo CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+
+    <main class="flex-1 flex items-center justify-center p-6">
+
+        
+        <div class="w-full max-w-5xl flex flex-col md:flex-row overflow-hidden rounded-xl shadow-2xl ">
+
+             <!-- Derecho: Imagen + Descripción -->
+            <div class="panel flex-[3.5] flex flex-col items-center justify-center p-6 drop-shadow-lg">
+
+                <img
+                    src="img/CREATE.png"
+                    alt="Create Account"
+                    class="w-60 h-60 md:w-80 md:h-80 object-contain drop-shadow-lx">
+
+                <p class="text-center text-white mt-4 px-6">
+                    Únete a nuestra comunidad y descubre todo lo que
+                    PetSport tiene para ofrecerte.
+                </p>
+
+            </div>
+
+            <!-- Derecho: Formulario de registro -->
+            <div class="flex-[2] flex flex-col justify-center bg-white relative p-6 md:p-12 text-primary">
+
+            <div class="absolute top-5 left-0 welcome px-5 md:px-8 py-2 rounded-r-full font-semibold ">
+                Bienvenido a PetSport
+            </div>
+               
+
+                <!-- Título -->
+                <h2 class="title text-2xl font-semibold text-center my-8">
+                    Crear una cuenta
+                </h2>
+
+                <!-- Formulario -->
+                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Usuario -->
+                    <div class="relative">
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="username"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Usuario
+
+                        </label>
+                    </div>
+
+                    <!-- First Name -->
+                    <div class="relative">
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="firstName"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Nombre
+
+                        </label>
+
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="relative">
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="lastName"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Apellido
+
+                        </label>
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="relative">
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="email"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Email
+
+                        </label>
+
+                    </div>
+
+                    <!-- Password -->
+                    <div class="relative">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="password"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Contraseña
+
+                        </label>
+
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="relative">
+
+                        <input
+                            type="text"
+                            id="phone"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="phone"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Teléfono
+
+                        </label>
+
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="md:col-span-2 flex justify-center mt-4">
+
+                        <button
+                            type="submit"
+                            class="btn-primary w-full md:w-3/5 py-3 rounded-full transition">
+
+                            crear cuenta
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <!-- Link -->
+                <div class="flex justify-center mt-8">
+
+                    <a
+                        href="login.php"
+                        class="text-primary hover:text-blue-700">
+
+                        Iniciar sesión
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="py-4 text-center text-white/70 text-sm">
+    Hecho en Colombia por Paula Sepúlveda · 2026
+</footer>
+
+</body>
+
+</html>
