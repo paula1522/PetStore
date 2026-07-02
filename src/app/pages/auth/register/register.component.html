@@ -1,235 +1,323 @@
+<main class="min-h-screen flex items-center justify-center  p-6">
 
-    <main class="min-h-screen flex items-center justify-center  p-6">
 
-        
-        <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+    <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
 
         <!-- Panel izquierdo -->
 
-             <!-- Derecho: Imagen + Descripción -->
-            <div class="panel flex-[2] flex flex-col items-center justify-center p-6 drop-shadow-lg">
+        <!-- Derecho: Imagen + Descripción -->
+        <div class="panel flex-[2] flex flex-col items-center justify-center p-6 drop-shadow-lg">
 
-                <img
-                    src="../../../../assets/login.png"
-                    alt="Create Account"
-                    class="w-60 h-60 md:w-80 md:h-80 object-contain drop-shadow-lx">
+            <img src="../../../../assets/login.png" alt="Create Account"
+                class="w-60 h-60 md:w-80 md:h-80 object-contain drop-shadow-lx">
 
-                <p class="text-center text-white mt-4 px-6">
-                    Únete a nuestra comunidad y descubre todo lo que
-                    PetSport tiene para ofrecerte.
-                </p>
+            <p class="text-center text-white mt-4 px-6">
+                Únete a nuestra comunidad y descubre todo lo que
+                PetSport tiene para ofrecerte.
+            </p>
 
-            </div>
+        </div>
 
-            <!-- Derecho: Formulario de registro -->
-            <div class="flex-[4] flex flex-col justify-center bg-white relative p-6 md:p-12 text-primary">
+        <!-- Derecho: Formulario de registro -->
+        <div class="flex-[4] flex flex-col justify-center bg-white relative p-6 md:p-12 text-primary">
 
             <div class="absolute top-5 left-0 welcome px-5 md:px-8 py-2 rounded-r-full font-semibold ">
                 Bienvenido a PetSport
             </div>
-               
 
-                <!-- Título -->
-                <h2 class="title text-2xl font-semibold text-center my-8">
-                    Crear una cuenta
-                </h2>
 
-                <!-- Formulario -->
-                <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Título -->
+            <h2 class="title text-2xl font-semibold text-center my-8">
+                Crear una cuenta
+            </h2>
 
-                    <!-- Usuario -->
-                    <div class="relative">
-                        <input
-                            type="text"
-                            id="username"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
+            <!-- Formulario -->
+            <form [formGroup]="RegisterForm" (ngSubmit)="guardarRegistro()"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                        <label
-                            for="username"
-                            class="absolute left-0 -top-4 text-sm text-primary
+                <!-- Usuario -->
+                <div class="relative">
+                    <input type="text" formControlName="username" placeholder=" " class="peer w-full py-2 input-line">
+
+                    <label for="username" class="absolute left-0 -top-4 text-sm text-primary
                             peer-placeholder-shown:top-2
                             peer-placeholder-shown:text-base
                             peer-focus:-top-4
                             peer-focus:text-sm">
 
-                            Usuario
+                        Usuario
 
-                        </label>
-                    </div>
+                    </label>
 
-                    <!-- First Name -->
-                    <div class="relative">
+                    @if(RegisterForm.get('username')?.touched &&
+                    RegisterForm.get('username')?.invalid){
 
-                        <input
-                            type="text"
-                            id="firstName"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
+                    <small class="text-red-500">
 
-                        <label
-                            for="firstName"
-                            class="absolute left-0 -top-4 text-sm text-primary
+                        @if(RegisterForm.get('username')?.errors?.['required']){
+                        El nombre de usuario es obligatorio.
+                        }
+
+                    </small>
+
+                    }
+                </div>
+
+                <!-- First Name -->
+                <div class="relative">
+
+                    <input type="text" formControlName="firstName" placeholder=" " class="peer w-full py-2 input-line">
+
+                    <label for="firstName" class="absolute left-0 -top-4 text-sm text-primary
                             peer-placeholder-shown:top-2
                             peer-placeholder-shown:text-base
                             peer-focus:-top-4
                             peer-focus:text-sm">
 
-                            Nombre
+                        Nombre
 
-                        </label>
+                    </label>
 
-                    </div>
+                    @if(RegisterForm.get('firstName')?.touched &&
+                    RegisterForm.get('firstName')?.invalid){
 
-                    <!-- Last Name -->
-                    <div class="relative">
+                    <small class="text-red-500">
 
-                        <input
-                            type="text"
-                            id="lastName"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
+                        @if(RegisterForm.get('firstName')?.errors?.['required']){
+                        El nombre es obligatorio.
+                        }
 
-                        <label
-                            for="lastName"
-                            class="absolute left-0 -top-4 text-sm text-primary
-                            peer-placeholder-shown:top-2
-                            peer-placeholder-shown:text-base
-                            peer-focus:-top-4
-                            peer-focus:text-sm">
+                    </small>
 
-                            Apellido
-
-                        </label>
-
-                    </div>
-
-                    <!-- Phone -->
-                    <div class="relative">
-
-                        <input
-                            type="text"
-                            id="phone"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
-
-                        <label
-                            for="phone"
-                            class="absolute left-0 -top-4 text-sm text-primary
-                            peer-placeholder-shown:top-2
-                            peer-placeholder-shown:text-base
-                            peer-focus:-top-4
-                            peer-focus:text-sm">
-
-                            Teléfono
-
-                        </label>
-
-                    </div>
-
-                    <!-- Email -->
-                    <div class="relative md:col-span-2">
-
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
-
-                        <label
-                            for="email"
-                            class="absolute left-0 -top-4 text-sm text-primary
-                            peer-placeholder-shown:top-2
-                            peer-placeholder-shown:text-base
-                            peer-focus:-top-4
-                            peer-focus:text-sm">
-
-                            Email
-
-                        </label>
-
-                    </div>
-
-                    <!-- Password -->
-                    <div class="relative">
-
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
-
-                        <label
-                            for="password"
-                            class="absolute left-0 -top-4 text-sm text-primary
-                            peer-placeholder-shown:top-2
-                            peer-placeholder-shown:text-base
-                            peer-focus:-top-4
-                            peer-focus:text-sm">
-
-                            Contraseña
-
-                        </label>
-
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div class="relative">
-
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            placeholder=" "
-                            class="peer w-full py-2 input-line">
-
-                        <label
-                            for="confirmPassword"
-                            class="absolute left-0 -top-4 text-sm text-primary
-                            peer-placeholder-shown:top-2
-                            peer-placeholder-shown:text-base
-                            peer-focus:-top-4
-                            peer-focus:text-sm">
-
-                            Confirmar Contraseña
-
-                        </label>
-
-                    </div>
-
-                    
-
-                    <!-- Botón -->
-                    <div class="md:col-span-2 flex justify-center mt-4">
-
-                        <button
-                            type="submit"
-                            class="btn-primary w-full md:w-3/5 py-3 rounded-full transition">
-
-                            crear cuenta
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-                <!-- Link -->
-                <div class="flex justify-center mt-8">
-
-                    <a
-                        routerLink="/auth/login"
-                        class="text-primary hover:text-blue-700">
-
-                        Iniciar sesión
-
-                    </a>
+                    }
 
                 </div>
+
+
+
+                <!-- Last Name -->
+                <div class="relative">
+
+                    <input type="text" formControlName="lastName" placeholder=" " class="peer w-full py-2 input-line">
+
+                    <label for="lastName" class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                        Apellido
+
+                    </label>
+
+                    @if(RegisterForm.get('lastName')?.touched &&
+                    RegisterForm.get('lastName')?.invalid){
+
+                    <small class="text-red-500">
+
+                        @if(RegisterForm.get('lastName')?.errors?.['required']){
+                        El apellido es obligatorio.
+                        }
+
+                    </small>
+
+                    }
+
+                </div>
+
+                <!-- Phone -->
+                <div class="relative">
+
+                    <input type="text" formControlName="phone" placeholder=" " class="peer w-full py-2 input-line">
+
+                    <label for="phone" class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                        Teléfono
+
+                    </label>
+
+
+                    @if(RegisterForm.get('phone')?.touched &&
+                    RegisterForm.get('phone')?.invalid){
+
+                    <small class="text-red-500">
+
+                        @if(RegisterForm.get('phone')?.errors?.['required']){
+                        El teléfono es obligatorio.
+                        }
+
+                    </small>
+
+                    }
+
+                </div>
+
+                <!-- Email -->
+                <div class="relative md:col-span-2">
+
+                    <input type="email" formControlName="email" placeholder=" " class="peer w-full py-2 input-line">
+
+                    <label for="email" class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                        Email
+
+                    </label>
+
+                    @if(RegisterForm.get('email')?.touched &&
+                    RegisterForm.get('email')?.invalid){
+
+                    <small class="text-red-500">
+
+                        @if(RegisterForm.get('email')?.errors?.['required']){
+                        El email es obligatorio.
+                        }
+
+                        @if(RegisterForm.get('email')?.errors?.['email']){
+                        El email no es válido.
+                        }
+
+
+                    </small>
+
+                    }
+
+                </div>
+
+                <!-- Password -->
+                <div class="relative">
+
+                    <input type="password" formControlName="password" placeholder=" "
+                        [type]="showPassword ? 'text' : 'password'" class="peer w-full py-2 input-line">
+
+                    <button type="button" (click)="showPassword = !showPassword"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500">
+
+                        @if (showPassword) {
+                        <i class="fa-solid fa-eye-slash peer-focus:text-sm"></i>
+                        } @else {
+                        <i class="fa-solid fa-eye peer-focus:text-sm"></i>
+                        }
+
+                    </button>
+
+                    <label for="password" class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                        Contraseña
+
+                    </label>
+
+                    @if(RegisterForm.get('password')?.touched &&
+                    RegisterForm.get('password')?.invalid){
+
+                    <small class="absolute left-0 -bottom-5 text-red-500">
+
+                        @if(RegisterForm.get('password')?.errors?.['required']){
+                        La contraseña es obligatoria.
+                        }
+
+                        @if(RegisterForm.get('password')?.errors?.['minlength']){
+                        La contraseña debe tener al menos 6 caracteres.
+                        }
+
+                        @if(RegisterForm.get('password')?.errors?.['maxlength']){
+                        La contraseña no debe tener más de 100 caracteres.
+                        }
+
+
+                    </small>
+
+                    }
+
+                </div>
+
+
+                <!-- Confirm Password -->
+                <div class="relative">
+
+                    <input type="password" formControlName="confirmPassword" placeholder=" "
+                        [type]="showPassword ? 'text' : 'password'" class="peer w-full py-2 input-line">
+
+                    <button type="button" (click)="showPassword = !showPassword"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500">
+
+                        @if (showPassword) {
+                        <i class="fa-solid fa-eye-slash"></i>
+                        } @else {
+                        <i class="fa-solid fa-eye"></i>
+                        }
+
+                    </button>
+
+                    <label for="confirmPassword" class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                        Confirmar Contraseña
+
+                    </label>
+
+                    @if(RegisterForm.get('confirmPassword')?.errors?.['required'] &&
+                    RegisterForm.get('confirmPassword')?.touched){
+
+                    <small class="absolute left-0 -bottom-[2.5rem] text-red-500">
+                        La confirmación de contraseña es obligatoria.
+                    </small>
+
+                    }
+
+                    @if(RegisterForm.hasError('passwordMismatch') &&
+                    RegisterForm.get('confirmPassword')?.touched){
+
+                    <small class="absolute left-0 -bottom-5 text-red-500">
+                        Las contraseñas no coinciden.
+                    </small>
+
+                    }
+
+                </div>
+
+
+
+                <!-- Botón -->
+                <div class="md:col-span-2 flex justify-center mt-4">
+
+                    <button type="submit" class="btn-primary w-full md:w-3/5 py-3 mt-4 rounded-full transition">
+
+                        crear cuenta
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <!-- Link -->
+            <div class="flex justify-center mt-8">
+
+                <a routerLink="/auth/login" class="text-primary hover:text-blue-700">
+
+                    Iniciar sesión
+
+                </a>
 
             </div>
 
         </div>
 
-    </main>
+    </div>
 
-   
+</main>

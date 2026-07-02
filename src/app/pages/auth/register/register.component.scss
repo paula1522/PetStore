@@ -60,3 +60,10 @@ $background-end: #2E258E;
   background: $panel-start;
   color: #fff;
 }
+
+i {
+  color: $text;
+  &:focus{
+    padding-bottom: 4px;
+  }
+}
