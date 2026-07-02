@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetSport - Create Account</title>
-    <!-- Archivo CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="min-h-screen flex flex-col">
-
-
-    <main class="flex-1 flex items-center justify-center p-6">
+    <main class="min-h-screen flex items-center justify-center  p-6">
 
         
-        <div class="w-full max-w-5xl flex flex-col md:flex-row overflow-hidden rounded-xl shadow-2xl ">
+        <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+
+        <!-- Panel izquierdo -->
 
              <!-- Derecho: Imagen + Descripción -->
-            <div class="panel flex-[3.5] flex flex-col items-center justify-center p-6 drop-shadow-lg">
+            <div class="panel flex-[2] flex flex-col items-center justify-center p-6 drop-shadow-lg">
 
                 <img
-                    src="img/CREATE.png"
+                    src="../../../../assets/login.png"
                     alt="Create Account"
                     class="w-60 h-60 md:w-80 md:h-80 object-contain drop-shadow-lx">
 
@@ -35,7 +22,7 @@
             </div>
 
             <!-- Derecho: Formulario de registro -->
-            <div class="flex-[2] flex flex-col justify-center bg-white relative p-6 md:p-12 text-primary">
+            <div class="flex-[4] flex flex-col justify-center bg-white relative p-6 md:p-12 text-primary">
 
             <div class="absolute top-5 left-0 welcome px-5 md:px-8 py-2 rounded-r-full font-semibold ">
                 Bienvenido a PetSport
@@ -117,8 +104,31 @@
 
                     </div>
 
-                    <!-- Email -->
+                    <!-- Phone -->
                     <div class="relative">
+
+                        <input
+                            type="text"
+                            id="phone"
+                            placeholder=" "
+                            class="peer w-full py-2 input-line">
+
+                        <label
+                            for="phone"
+                            class="absolute left-0 -top-4 text-sm text-primary
+                            peer-placeholder-shown:top-2
+                            peer-placeholder-shown:text-base
+                            peer-focus:-top-4
+                            peer-focus:text-sm">
+
+                            Teléfono
+
+                        </label>
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="relative md:col-span-2">
 
                         <input
                             type="email"
@@ -163,28 +173,30 @@
 
                     </div>
 
-                    <!-- Phone -->
+                    <!-- Confirm Password -->
                     <div class="relative">
 
                         <input
-                            type="text"
-                            id="phone"
+                            type="password"
+                            id="confirmPassword"
                             placeholder=" "
                             class="peer w-full py-2 input-line">
 
                         <label
-                            for="phone"
+                            for="confirmPassword"
                             class="absolute left-0 -top-4 text-sm text-primary
                             peer-placeholder-shown:top-2
                             peer-placeholder-shown:text-base
                             peer-focus:-top-4
                             peer-focus:text-sm">
 
-                            Teléfono
+                            Confirmar Contraseña
 
                         </label>
 
                     </div>
+
+                    
 
                     <!-- Botón -->
                     <div class="md:col-span-2 flex justify-center mt-4">
@@ -205,7 +217,7 @@
                 <div class="flex justify-center mt-8">
 
                     <a
-                        href="login.php"
+                        routerLink="/auth/login"
                         class="text-primary hover:text-blue-700">
 
                         Iniciar sesión
@@ -220,10 +232,4 @@
 
     </main>
 
-    <footer class="py-4 text-center text-white/70 text-sm">
-    Hecho en Colombia por Paula Sepúlveda · 2026
-</footer>
-
-</body>
-
-</html>
+   

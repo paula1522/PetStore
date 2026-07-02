@@ -1,132 +1,151 @@
-<!DOCTYPE html>
-<html lang="es">
+<main class="min-h-screen flex items-center justify-center p-6">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetSport-Login</title>
-    <!-- Archivo CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <div class="w-full max-w-6xl bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
 
-<body class="min-h-screen flex flex-col">
+    <!-- Formulario -->
+    <div class="flex flex-col justify-center p-6 md:p-12 bg-white relative">
 
-<main class="flex-1 flex items-center justify-center p-6">
+      <div class="absolute top-5 right-0 welcome px-5 md:px-8 py-2 rounded-l-full font-semibold">
+        Bienvenido a PetSport
+      </div>
 
-<div class="w-full max-w-5xl flex flex-col md:flex-row overflow-hidden rounded-xl shadow-2xl">
+      <h2 class="title text-2xl font-semibold text-center my-8">
+        Inicia sesión en tu cuenta
+      </h2>
 
-    <!-- Derecho: Formulario de login -->
-    <div class="flex-[2] flex flex-col justify-center p-6 md:p-12 bg-white relative text-primary">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="guardarLogin()"
+         class="flex flex-col " >
 
-        <!--Cartel de bienvenida-->
-        <div class="absolute top-5 right-0 welcome px-5 md:px-8 py-2 rounded-l-full font-semibold ">
-            Bienvenido a PetSport
-        </div>
-       
+        <!-- username -->
+        <div class="relative mb-7">
 
-        <h2 class="title text-2xl font-semibold text-center my-8">
-            Inicia sesión en tu cuenta
-        </h2>
+          <input
+            type="text"
+            formControlName="username"
+            placeholder=" "
+            class="peer w-full py-2 input-line">
 
-        <form class="flex flex-col">
+          <label
+            class="absolute left-0 -top-4 text-sm text-primary
+                   peer-placeholder-shown:top-2
+                   peer-placeholder-shown:text-base
+                   peer-focus:-top-4
+                   peer-focus:text-sm">
 
-            <div class="relative mb-7">
+            Usuario
 
-                <input
-                    type="text"
-                    id="username"
-                    placeholder=" "
-                    class="peer w-full py-2 input-line">
+          </label>
 
-                <label
-                    for="username"
-                    class="absolute left-0 -top-4 text-sm text-primary
-                    peer-placeholder-shown:top-2
-                    peer-placeholder-shown:text-base
-                    peer-focus:-top-4
-                    peer-focus:text-sm">
 
-                    Usuario
+          @if(loginForm.get('username')?.touched &&
+              loginForm.get('username')?.invalid){
 
-                </label>
+            <small class="text-red-500">
 
-            </div>
+              @if(loginForm.get('username')?.errors?.['required']){
+                El nombre de usuario es obligatorio.
+              }
 
-            <div class="relative mb-7">
+            </small>
 
-                <input
-                    type="password"
-                    id="password"
-                    placeholder=" "
-                    class="peer w-full py-2 input-line">
-
-                <label
-                    for="password"
-                    class="absolute left-0 -top-4 text-sm text-primary
-                    peer-placeholder-shown:top-2
-                    peer-placeholder-shown:text-base
-                    peer-focus:-top-4
-                    peer-focus:text-sm">
-
-                    Contraseña
-
-                </label>
-
-            </div>
-
-            <button
-                type="submit"
-                class="btn-primary mx-auto w-full md:w-3/5 py-3 rounded-full transition">
-
-                Ingresar
-
-            </button>
-
-        </form>
-
-        <div class="flex flex-col items-center mt-8 gap-3">
-
-            <a href="Register.php" class="text-primary hover:text-blue-700">
-                Crear cuenta
-            </a>
-
-            <a href="#" class="text-primary underline hover:text-blue-700">
-                ¿Olvidaste tu contraseña?
-            </a>
+          }
 
         </div>
 
+        <!-- Password -->
+        <div class="relative mb-7">
+
+          <input
+            type="password"
+            formControlName="password"
+            placeholder=" "
+            class="peer w-full py-2 input-line">
+
+          <label
+            class="absolute left-0 -top-4 text-sm text-primary
+                   peer-placeholder-shown:top-2
+                   peer-placeholder-shown:text-base
+                   peer-focus:-top-4
+                   peer-focus:text-sm">
+
+            Contraseña
+
+          </label>
+
+          @if(loginForm.get('password')?.touched &&
+              loginForm.get('password')?.invalid){
+
+            <small class="text-red-500">
+
+              @if(loginForm.get('password')?.errors?.['required']){
+                La contraseña es obligatoria.
+              }
+
+              @if(loginForm.get('password')?.errors?.['minlength']){
+                La contraseña debe tener al menos 6 caracteres.
+              }
+
+              @if(loginForm.get('password')?.errors?.['maxlength']){
+                La contraseña no puede exceder los 20 caracteres.
+              }
+
+             
+
+            </small>
+
+          }
+
+        </div>
+
+        <button
+          type="submit"
+          class="btn-primary mx-auto w-full md:w-3/5 py-3 rounded-full transition">
+
+          Ingresar
+
+        </button>
+
+      </form>
+
+      <div class="flex flex-col items-center mt-8 gap-3">
+
+        <a routerLink="/auth/register"
+           class="text-primary hover:text-blue-700">
+
+          Crear cuenta
+
+        </a>
+
+        <a href="#"
+           class="text-primary underline hover:text-blue-700">
+
+          ¿Olvidaste tu contraseña?
+
+        </a>
+
+      </div>
+
     </div>
 
-    <!-- Izquierdo: Imagen + Descripción -->
+    <!-- Imagen -->
+    <div class="panel flex flex-col items-center justify-center p-6">
 
-    <div class="panel flex-[3.5] flex flex-col items-center justify-center p-6 drop-shadow-lg">
+      <img
+        src="assets/login.png"
+        alt="Login"
+        class="w-60 h-60 md:w-80 md:h-80 object-contain">
 
-        <img
-            src="img/login.png"
-            alt="Login"
-            class="w-60 h-60 md:w-80 md:h-80 object-contain drop-shadow-lg">
+      <p class="text-center text-white mt-4 px-6">
 
-        <p class="text-center text-white mt-4 px-6">
+        Tu próxima aventura con tus mascotas comienza aquí.
+        Inicia sesión para continuar.
 
-            Tu próxima aventura con tus mascotas comienza aquí.
-            Inicia sesión para continuar.
-
-        </p>
+      </p>
 
     </div>
 
-</div>
+  </div>
 
 </main>
-
-<footer class="py-4 text-center text-white/70 text-sm">
-    Hecho en Colombia por Paula Sepúlveda · 2026
-</footer>
-
-</body>
-
-
-</html>
