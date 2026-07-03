@@ -9,6 +9,8 @@ $secondary: #7445DD;
 
 $title: #6D6DC6;
 $text: #8A8DC4;
+$text-error: #979695;
+
 
 $border: #A9ACD6;
 $focus: #4A4ED4;
@@ -59,4 +61,9 @@ $background-end: #2E258E;
 .welcome {
   background: $panel-start;
   color: #fff;
+}
+
+small {
+  color: $text-error;
+  padding: 2px;
 }

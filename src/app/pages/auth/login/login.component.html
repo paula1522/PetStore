@@ -13,22 +13,14 @@
         Inicia sesión en tu cuenta
       </h2>
 
-      <form
-        [formGroup]="loginForm"
-        (ngSubmit)="guardarLogin()"
-         class="flex flex-col " >
+      <form [formGroup]="loginForm" (ngSubmit)="guardarLogin()" class="flex flex-col ">
 
         <!-- username -->
-        <div class="relative mb-7">
+        <div class="relative mb-10">
 
-          <input
-            type="text"
-            formControlName="username"
-            placeholder=" "
-            class="peer w-full py-2 input-line">
+          <input type="text" formControlName="username" placeholder=" " class="peer w-full py-2 input-line">
 
-          <label
-            class="absolute left-0 -top-4 text-sm text-primary
+          <label class="absolute left-0 -top-4 text-sm text-primary
                    peer-placeholder-shown:top-2
                    peer-placeholder-shown:text-base
                    peer-focus:-top-4
@@ -39,32 +31,22 @@
           </label>
 
 
-          @if(loginForm.get('username')?.touched &&
-              loginForm.get('username')?.invalid){
-
-            <small class="text-red-500">
-
-              @if(loginForm.get('username')?.errors?.['required']){
-                El nombre de usuario es obligatorio.
-              }
-
-            </small>
-
-          }
+          <div *ngIf="RegistrosNoValido">
+            <div *ngFor="let validation of count_validation_messages.username">
+              <small class="absolute left-0 "
+                *ngIf="UtilFunction.validarError(loginForm, 'username', validation.type)">{{
+                validation.message }}</small>
+            </div>
+          </div>
 
         </div>
 
         <!-- Password -->
-        <div class="relative mb-7">
+        <div class="relative mb-8">
 
-          <input
-            type="password"
-            formControlName="password"
-            placeholder=" "
-            class="peer w-full py-2 input-line">
+          <input type="password" formControlName="password" placeholder=" " class="peer w-full py-2 input-line">
 
-          <label
-            class="absolute left-0 -top-4 text-sm text-primary
+          <label class="absolute left-0 -top-4 text-sm text-primary
                    peer-placeholder-shown:top-2
                    peer-placeholder-shown:text-base
                    peer-focus:-top-4
@@ -74,34 +56,17 @@
 
           </label>
 
-          @if(loginForm.get('password')?.touched &&
-              loginForm.get('password')?.invalid){
-
-            <small class="text-red-500">
-
-              @if(loginForm.get('password')?.errors?.['required']){
-                La contraseña es obligatoria.
-              }
-
-              @if(loginForm.get('password')?.errors?.['minlength']){
-                La contraseña debe tener al menos 6 caracteres.
-              }
-
-              @if(loginForm.get('password')?.errors?.['maxlength']){
-                La contraseña no puede exceder los 20 caracteres.
-              }
-
-             
-
-            </small>
-
-          }
+          <div *ngIf="RegistrosNoValido">
+            <div  *ngFor="let validation of count_validation_messages.password">
+              <small class="absolute left-0 "
+                *ngIf="UtilFunction.validarError(loginForm, 'password', validation.type)">{{
+                validation.message }}</small>
+            </div>
+          </div>
 
         </div>
-
-        <button
-          type="submit"
-          class="btn-primary mx-auto w-full md:w-3/5 py-3 rounded-full transition">
+        
+        <button type="submit"  class="btn-primary mx-auto w-full md:w-3/5 py-3 rounded-full transition">
 
           Ingresar
 
@@ -111,15 +76,13 @@
 
       <div class="flex flex-col items-center mt-8 gap-3">
 
-        <a routerLink="/auth/register"
-           class="text-primary hover:text-blue-700">
+        <a routerLink="/register" class="text-primary hover:text-blue-700">
 
           Crear cuenta
 
         </a>
 
-        <a href="#"
-           class="text-primary underline hover:text-blue-700">
+        <a href="#" class="text-primary underline hover:text-blue-700">
 
           ¿Olvidaste tu contraseña?
 
@@ -132,10 +95,7 @@
     <!-- Imagen -->
     <div class="panel flex flex-col items-center justify-center p-6">
 
-      <img
-        src="assets/login.png"
-        alt="Login"
-        class="w-60 h-60 md:w-80 md:h-80 object-contain">
+      <img src="assets/login.png" alt="Login" class="w-60 h-60 md:w-80 md:h-80 object-contain">
 
       <p class="text-center text-white mt-4 px-6">
 

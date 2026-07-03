@@ -49,18 +49,13 @@
 
                     </label>
 
-                    @if(RegisterForm.get('username')?.touched &&
-                    RegisterForm.get('username')?.invalid){
-
-                    <small class="text-red-500">
-
-                        @if(RegisterForm.get('username')?.errors?.['required']){
-                        El nombre de usuario es obligatorio.
-                        }
-
-                    </small>
-
-                    }
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.username">
+                            <small 
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'username', validation.type)">{{
+                                validation.message }}</small>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- First Name -->
@@ -78,18 +73,13 @@
 
                     </label>
 
-                    @if(RegisterForm.get('firstName')?.touched &&
-                    RegisterForm.get('firstName')?.invalid){
-
-                    <small class="text-red-500">
-
-                        @if(RegisterForm.get('firstName')?.errors?.['required']){
-                        El nombre es obligatorio.
-                        }
-
-                    </small>
-
-                    }
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.firstName">
+                            <small 
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'firstName', validation.type)">{{
+                                validation.message }}</small>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -110,18 +100,13 @@
 
                     </label>
 
-                    @if(RegisterForm.get('lastName')?.touched &&
-                    RegisterForm.get('lastName')?.invalid){
-
-                    <small class="text-red-500">
-
-                        @if(RegisterForm.get('lastName')?.errors?.['required']){
-                        El apellido es obligatorio.
-                        }
-
-                    </small>
-
-                    }
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.lastName">
+                            <small 
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'lastName', validation.type)">{{
+                                validation.message }}</small>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -141,18 +126,13 @@
                     </label>
 
 
-                    @if(RegisterForm.get('phone')?.touched &&
-                    RegisterForm.get('phone')?.invalid){
-
-                    <small class="text-red-500">
-
-                        @if(RegisterForm.get('phone')?.errors?.['required']){
-                        El teléfono es obligatorio.
-                        }
-
-                    </small>
-
-                    }
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.phone">
+                            <small 
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'phone', validation.type)">{{
+                                validation.message }}</small>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -171,23 +151,13 @@
 
                     </label>
 
-                    @if(RegisterForm.get('email')?.touched &&
-                    RegisterForm.get('email')?.invalid){
-
-                    <small class="text-red-500">
-
-                        @if(RegisterForm.get('email')?.errors?.['required']){
-                        El email es obligatorio.
-                        }
-
-                        @if(RegisterForm.get('email')?.errors?.['email']){
-                        El email no es válido.
-                        }
-
-
-                    </small>
-
-                    }
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.email">
+                            <small 
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'email', validation.type)">{{
+                                validation.message }}</small>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -218,27 +188,13 @@
 
                     </label>
 
-                    @if(RegisterForm.get('password')?.touched &&
-                    RegisterForm.get('password')?.invalid){
-
-                    <small class="absolute left-0 -bottom-5 text-red-500">
-
-                        @if(RegisterForm.get('password')?.errors?.['required']){
-                        La contraseña es obligatoria.
-                        }
-
-                        @if(RegisterForm.get('password')?.errors?.['minlength']){
-                        La contraseña debe tener al menos 6 caracteres.
-                        }
-
-                        @if(RegisterForm.get('password')?.errors?.['maxlength']){
-                        La contraseña no debe tener más de 100 caracteres.
-                        }
-
-
-                    </small>
-
-                    }
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.password">
+                            <small class="absolute left-0 "
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'password', validation.type)">{{
+                                validation.message }}</small>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -270,23 +226,23 @@
 
                     </label>
 
-                    @if(RegisterForm.get('confirmPassword')?.errors?.['required'] &&
-                    RegisterForm.get('confirmPassword')?.touched){
 
-                    <small class="absolute left-0 -bottom-[2.5rem] text-red-500">
-                        La confirmación de contraseña es obligatoria.
-                    </small>
+                    <div *ngIf="RegistrosNoValido">
+                        <div *ngFor="let validation of count_validation_messages.confirmPassword">
+                            <small class="absolute left-0 "
+                                *ngIf="UtilFunction.validarError(RegisterForm, 'confirmPassword', validation.type)">{{
+                                validation.message }}</small>
 
-                    }
+                        </div>
+                        <div *ngIf="RegisterForm.hasError('passwordMismatch') && RegisterForm.get('confirmPassword')?.touched">
 
-                    @if(RegisterForm.hasError('passwordMismatch') &&
-                    RegisterForm.get('confirmPassword')?.touched){
+                            <small class="absolute left-0  text-red-500">
+                                Las contraseñas no coinciden.
+                            </small>
 
-                    <small class="absolute left-0 -bottom-5 text-red-500">
-                        Las contraseñas no coinciden.
-                    </small>
+                        </div>
+                    </div>
 
-                    }
 
                 </div>
 
@@ -308,7 +264,7 @@
             <!-- Link -->
             <div class="flex justify-center mt-8">
 
-                <a routerLink="/auth/login" class="text-primary hover:text-blue-700">
+                <a routerLink="/login" class="text-primary hover:text-blue-700">
 
                     Iniciar sesión
 
