@@ -251,7 +251,9 @@
                 <!-- Botón -->
                 <div class="md:col-span-2 flex justify-center mt-4">
 
-                    <button type="submit" class="btn-primary w-full md:w-3/5 py-3 mt-4 rounded-full transition">
+                    <button type="submit" 
+                    [disabled]="RegisterForm.invalid"
+                    class="btn-primary w-full md:w-3/5 py-3 mt-4 rounded-full transition">
 
                         crear cuenta
 

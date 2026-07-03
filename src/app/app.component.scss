@@ -21,3 +21,19 @@ $panel-end: #5457D8;
 
 $background-start: #8531E7;
 $background-end: #2E258E;
+
+
+
+
+/* ===========================
+   ESTILOS GENERALES
+=========================== */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    to right,
+    $background-start,
+    $background-end
+  );
+}

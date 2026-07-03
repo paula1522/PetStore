@@ -1,34 +1,34 @@
 import { UtilFunction } from './../../../utils/general-function/util-function';
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  router: any;
+    private router = inject(Router);
 
- 
-constructor(private fb: FormBuilder) { }
 
-UtilFunction = UtilFunction;
 
-loginForm = this.fb.group({
-  username: ['', Validators.required],
-  password: ['', [Validators.required,
-                  Validators.minLength(6), 
-                  Validators.maxLength(20)]],
-  
-});
+  constructor(private fb: FormBuilder) { }
 
-/*Función para validar si el campo de registros es invalido y ha sido tocado*/
-   get RegistrosNoValido() {
+  UtilFunction = UtilFunction;
+
+  loginForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', [Validators.required,
+    Validators.minLength(6),
+    Validators.maxLength(20)]],
+
+  });
+
+  get RegistrosNoValido() {
     return this.loginForm.invalid && (this.loginForm.dirty || this.loginForm.touched);
   }
 
@@ -46,15 +46,14 @@ loginForm = this.fb.group({
 
 
 guardarLogin() {
+  console.log('Entró a guardarLogin');
 
-    if(this.loginForm.invalid){
-      this.loginForm.markAllAsTouched();
-      return;
-    }else{
-      this.router.navigate(['/home']);
-    }
+  if (this.loginForm.invalid) {
+    this.loginForm.markAllAsTouched();
+    return;
+  }
 
-
+  this.router.navigate(['/home']);
 }
 
 

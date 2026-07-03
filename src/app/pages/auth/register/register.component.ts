@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ValidacionesPropias } from './../../../utils/validaciones-propias';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UtilFunction } from '../../../utils/general-function/util-function';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
+  private router = inject(Router);
    
   constructor(private fb: FormBuilder) { }
 
@@ -46,7 +47,7 @@ export class RegisterComponent {
   }
 
 
-  /*Función para validar si el campo de registros es invalido y ha sido tocado*/
+  
    get RegistrosNoValido() {
     return this.RegisterForm.invalid && (this.RegisterForm.dirty || this.RegisterForm.touched);
   }
@@ -90,7 +91,8 @@ export class RegisterComponent {
         return;
       }
   
-      console.log(this.RegisterForm.value);
+
+    this.router.navigate(['/home']);
   
   }
   

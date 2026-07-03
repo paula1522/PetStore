@@ -6,9 +6,11 @@
 // Colores principales
 $primary: #8A56F3;
 $secondary: #7445DD;
+$tertiary:#A9ACD6;
 
 $title: #6D6DC6;
 $text: #8A8DC4;
+$text-white: #fff;
 $text-error: #979695;
 
 
@@ -49,18 +51,30 @@ $background-end: #2E258E;
   }
 }
 
-.btn-primary {
-  background: $primary;
-  color: #fff;
 
-  &:hover {
+
+.btn-primary{
+  
+  background: $primary;
+  color: $text-white;
+  
+
+  &:hover:not(:disabled) {
     background: $secondary;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    background: $tertiary;
+    color: $text-white;
+    cursor: not-allowed;
+    opacity: .8;
   }
 }
 
 .welcome {
   background: $panel-start;
-  color: #fff;
+  color: $text-white;
 }
 
 small {
