@@ -90,9 +90,10 @@ export class RegisterComponent {
         this.RegisterForm.markAllAsTouched();
         return;
       }
-  
+      
+      
 
-    this.router.navigate(['/home']);
+    
   
   }
   

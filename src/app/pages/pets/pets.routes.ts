@@ -6,6 +6,7 @@ import { PetEditComponent } from './pet-edit/pet-edit.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { FindByStatusComponent } from './find-by-status/find-by-status.component';
 import { FindByTagsComponent } from './find-by-tags/find-by-tags.component';
+import { authGuard } from '../../core/guards/auth.guard';
 
 
 export const petsRoutes: Routes = [
@@ -15,7 +16,8 @@ export const petsRoutes: Routes = [
   },
   {
     path: 'create',
-    component: PetCreateComponent
+    component: PetCreateComponent,
+    canActivate:[authGuard]
   },
   {
     path: ':petId',

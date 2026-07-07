@@ -11,6 +11,7 @@ import { authGuard } from './core/guards/auth.guard';
 
 import { petsRoutes } from './pages/pets/pets.routes';
 import { usersRoutes } from './pages/users/users.routes';
+import { authPerfilGuard } from './core/guards/auth-perfil.guard';
 
 export const routes: Routes = [
 
@@ -32,6 +33,7 @@ export const routes: Routes = [
 
   {
     path: 'home',
+    
     component: HomeComponent
   },
 
@@ -45,7 +47,7 @@ export const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
-    canActivate: [authGuard],
+    canActivate: [authPerfilGuard],
     children: usersRoutes
   },
 
