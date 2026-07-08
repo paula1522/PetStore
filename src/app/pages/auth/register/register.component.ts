@@ -1,9 +1,12 @@
+import { UserService } from './../../../services/api/user.service';
 import { CommonModule } from '@angular/common';
 import { ValidacionesPropias } from './../../../utils/validaciones-propias';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UtilFunction } from '../../../utils/general-function/util-function';
 import { Router, RouterLink } from '@angular/router';
+import { RegisterRequest } from '../../../core/models/Register.model';
+import { tap } from 'rxjs';
 
 
 @Component({
@@ -15,7 +18,9 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class RegisterComponent {
   private router = inject(Router);
-   
+  private UserService = inject(UserService);
+
+
   constructor(private fb: FormBuilder) { }
 
   /*llamar funcion de validar errores en el formulario*/
@@ -23,23 +28,27 @@ export class RegisterComponent {
 
 
   RegisterForm = this.fb.group({
-    username: ['',[Validators.required]],
+    id: [0],
+    username: ['', [Validators.required]],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     phone: ['', [Validators.required
-              ,ValidacionesPropias.phoneNumberValidator]],
+      , ValidacionesPropias.phoneNumberValidator]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required,
-                    Validators.minLength(6), 
-                    Validators.maxLength(20)]],
-    confirmPassword: ['', Validators.required]
-    
-  },{validators: [ValidacionesPropias.passwordMatchValidator
-  ]}
-  ); 
+    Validators.minLength(6),
+    Validators.maxLength(20)]],
+    confirmPassword: ['', Validators.required],
+    userStatus: [1],
+
+  }, {
+    validators: [ValidacionesPropias.passwordMatchValidator
+    ]
+  }
+  );
 
 
- // ocultar/ver contraseña
+  // ocultar/ver contraseña
   showPassword = false;
 
   togglePassword() {
@@ -47,8 +56,8 @@ export class RegisterComponent {
   }
 
 
-  
-   get RegistrosNoValido() {
+
+  get RegistrosNoValido() {
     return this.RegisterForm.invalid && (this.RegisterForm.dirty || this.RegisterForm.touched);
   }
 
@@ -85,16 +94,39 @@ export class RegisterComponent {
 
   /*Función específica para guardar el registro del usuario*/
   guardarRegistro() {
-  
-      if(this.RegisterForm.invalid){
-        this.RegisterForm.markAllAsTouched();
-        return;
-      }
-      
-      
 
+    if (this.RegisterForm.invalid) {
+      this.RegisterForm.markAllAsTouched();
+      return;
+    }
     
-  
+    const formRegister = this.RegisterForm.getRawValue();
+    const request: RegisterRequest = {
+    id: formRegister.id!,
+    username: formRegister.username!,
+    firstName: formRegister.firstName!,
+    lastName: formRegister.lastName!,
+    email: formRegister.email!,
+    password: formRegister.password!,
+    phone: formRegister.phone!,
+    userStatus: formRegister.userStatus!
+  };
+
+
+    this.UserService.Register(request).pipe(
+      tap(response => {
+        console.log('Usuario registrado', response);
+        this.router.navigate(['/home']);
+        
+      })
+    ).subscribe ({
+      error: (error) => {
+        console.error('Error al registrar', error);
+      }
+    });
+
+
+
   }
-  
+
 }
