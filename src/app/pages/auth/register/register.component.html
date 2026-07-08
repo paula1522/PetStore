@@ -51,8 +51,7 @@
 
                     <div *ngIf="RegistrosNoValido">
                         <div *ngFor="let validation of count_validation_messages.username">
-                            <small 
-                                *ngIf="UtilFunction.validarError(RegisterForm, 'username', validation.type)">{{
+                            <small *ngIf="UtilFunction.validarError(RegisterForm, 'username', validation.type)">{{
                                 validation.message }}</small>
                         </div>
                     </div>
@@ -75,8 +74,7 @@
 
                     <div *ngIf="RegistrosNoValido">
                         <div *ngFor="let validation of count_validation_messages.firstName">
-                            <small 
-                                *ngIf="UtilFunction.validarError(RegisterForm, 'firstName', validation.type)">{{
+                            <small *ngIf="UtilFunction.validarError(RegisterForm, 'firstName', validation.type)">{{
                                 validation.message }}</small>
                         </div>
                     </div>
@@ -102,8 +100,7 @@
 
                     <div *ngIf="RegistrosNoValido">
                         <div *ngFor="let validation of count_validation_messages.lastName">
-                            <small 
-                                *ngIf="UtilFunction.validarError(RegisterForm, 'lastName', validation.type)">{{
+                            <small *ngIf="UtilFunction.validarError(RegisterForm, 'lastName', validation.type)">{{
                                 validation.message }}</small>
                         </div>
                     </div>
@@ -128,8 +125,7 @@
 
                     <div *ngIf="RegistrosNoValido">
                         <div *ngFor="let validation of count_validation_messages.phone">
-                            <small 
-                                *ngIf="UtilFunction.validarError(RegisterForm, 'phone', validation.type)">{{
+                            <small *ngIf="UtilFunction.validarError(RegisterForm, 'phone', validation.type)">{{
                                 validation.message }}</small>
                         </div>
                     </div>
@@ -153,8 +149,7 @@
 
                     <div *ngIf="RegistrosNoValido">
                         <div *ngFor="let validation of count_validation_messages.email">
-                            <small 
-                                *ngIf="UtilFunction.validarError(RegisterForm, 'email', validation.type)">{{
+                            <small *ngIf="UtilFunction.validarError(RegisterForm, 'email', validation.type)">{{
                                 validation.message }}</small>
                         </div>
                     </div>
@@ -234,7 +229,8 @@
                                 validation.message }}</small>
 
                         </div>
-                        <div *ngIf="RegisterForm.hasError('passwordMismatch') && RegisterForm.get('confirmPassword')?.touched">
+                        <div
+                            *ngIf="RegisterForm.hasError('passwordMismatch') && RegisterForm.get('confirmPassword')?.touched">
 
                             <small class="absolute left-0  text-red-500">
                                 Las contraseñas no coinciden.
@@ -248,14 +244,20 @@
 
 
 
-                <!-- Botón -->
-                <div class="md:col-span-2 flex justify-center mt-4">
+                <!-- Botones -->
+                <div class="md:col-span-2 flex flex-col md:flex-row justify-center gap-4 mt-6">
 
-                    <button type="submit" 
-                    [disabled]="RegisterForm.invalid"
-                    class="btn-primary w-full md:w-3/5 py-3 mt-4 rounded-full transition">
+                    <button type="button" routerLink="/register"
+                        class="btn-secondary w-full md:w-2/5 py-3 rounded-full transition">
 
-                        crear cuenta
+                        Cancelar registro
+
+                    </button>
+
+                    <button type="submit" (click)="CancelarRegistro()"
+                        class="btn-primary w-full md:w-2/5 py-3 rounded-full transition">
+
+                        Crear cuenta
 
                     </button>
 

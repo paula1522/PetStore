@@ -1,3 +1,4 @@
+import { Usuario } from './../../../core/models/User.model';
 import { UserService } from './../../../services/api/user.service';
 import { CommonModule } from '@angular/common';
 import { ValidacionesPropias } from './../../../utils/validaciones-propias';
@@ -5,8 +6,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UtilFunction } from '../../../utils/general-function/util-function';
 import { Router, RouterLink } from '@angular/router';
-import { RegisterRequest } from '../../../core/models/Register.model';
-import { tap } from 'rxjs';
+import { Subject, takeUntil, tap, timer } from 'rxjs';
 
 
 @Component({
@@ -19,6 +19,8 @@ import { tap } from 'rxjs';
 export class RegisterComponent {
   private router = inject(Router);
   private UserService = inject(UserService);
+    private destruir$ = new Subject<void>(); // Notificador
+
 
 
   constructor(private fb: FormBuilder) { }
@@ -93,27 +95,24 @@ export class RegisterComponent {
 
 
   /*Función específica para guardar el registro del usuario*/
-  guardarRegistro() {
+  guardarRegistro(): void {
 
-    if (this.RegisterForm.invalid) {
-      this.RegisterForm.markAllAsTouched();
-      return;
-    }
-    
-    const formRegister = this.RegisterForm.getRawValue();
-    const request: RegisterRequest = {
-    id: formRegister.id!,
-    username: formRegister.username!,
-    firstName: formRegister.firstName!,
-    lastName: formRegister.lastName!,
-    email: formRegister.email!,
-    password: formRegister.password!,
-    phone: formRegister.phone!,
-    userStatus: formRegister.userStatus!
-  };
+  if (this.RegisterForm.invalid) {
+    this.RegisterForm.markAllAsTouched();
+    return;
+  }
 
+  const formRegister = this.RegisterForm.getRawValue();
 
-    this.UserService.Register(request).pipe(
+  const request = new Usuario(
+    formRegister.username!,
+    formRegister.firstName!,
+    formRegister.lastName!,
+    formRegister.email!,
+    formRegister.password!,
+    formRegister.phone!
+  );
+ this.UserService.Register(request).pipe(
       tap(response => {
         console.log('Usuario registrado', response);
         this.router.navigate(['/home']);

@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { GetUserRequest } from '../../../core/models/GetUser.model';
+import { GetUserRequest, GetUserResponse } from '../../../core/models/GetUser.model';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ import { GetUserRequest } from '../../../core/models/GetUser.model';
 export class LoginComponent {
   private router = inject(Router);
   private UserService = inject(UserService);
+  private cookieService = inject(CookieService);
 
 
 
@@ -50,47 +52,52 @@ export class LoginComponent {
 
   guardarLogin() {
 
-    // 1.Valida que todos los campos sean correctos
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-      return;
-    }
+  // 1. Valida que todos los campos sean correctos
+  if (this.loginForm.invalid) {
+    this.loginForm.markAllAsTouched();
+    return;
+  }
 
-    //2.Obtiene los datos de entrada
-    const { username, password } = this.loginForm.value;
-    //const request: GetUserRequest = { username: username! };
+  // 2. Obtiene los datos de entrada
+  const { username } = this.loginForm.value;
 
-    /*this.UserService.UserGet(request).subscribe({
-      next: (user: GetUserRequest) => {
-        console.log('usuario encontrado');*/
+  const request: GetUserRequest = { username: username! };
 
-    //3.Realiza el proceso del login
-    this.UserService.Login(username!, password!).subscribe({
 
-      //4.Respuesta si el login es exitoso
-      next: (response) => {
-        console.log('Respuesta del login');
-        console.log(response)
+  this.UserService.UserGet(request).subscribe({
 
-        //4.1 Redirecciona al Home
-        this.router.navigate(['/home']);
-      },
+    next: (user: GetUserResponse) => {
 
-      //5. Se ejecuta si courre un error 
-      error: (error) => {
-        console.error('error en el login', error);
-      }
-    });
-    /*},
+      console.log('Usuario encontrado');
+      console.log(user);
+
+
+      this.cookieService.set(
+            'token_sesion', 
+            user.username, 
+            {
+              expires: 2,         // Expira en 2 días
+              path: '/',          // Accesible en toda la app
+              secure: false,       // Solo HTTPS
+              sameSite: 'Strict'  // Protección CSRF
+            }
+          );
+
+      alert(`Bienvenido ${user.username}`);
+
+      this.router.navigate(['/home']);
+    },
+
     error: (error) => {
 
       console.error('El usuario no existe', error);
       alert('El usuario no existe');
     }
 
-    });*/
-    //Esta se ejecuta antes de recicbir la respuesta del login.
-    console.log('Fuera del subscribe');
+  });
 
-  }
+  // Esta línea se ejecuta antes de recibir la respuesta del subscribe.
+  console.log('Fuera del subscribe');
+
+}
 }

@@ -70,6 +70,21 @@ $background-end: #2E258E;
   }
 }
 
+.btn-secondary {
+  background: transparent;
+  color: $primary;
+  border: 2px solid $primary;
+
+  &:hover {
+    background: rgba($primary, 0.08);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
 .welcome {
   background: $panel-start;
   color: #fff;
