@@ -1,7 +1,7 @@
 import { GetUserRequest, GetUserResponse } from './../../core/models/GetUser.model';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Usuario } from '../../core/models/User.model';
+import { UsuarioClass } from '../../core/models/User.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,8 @@ export class UserService {
 
 
   //Register 
-  Register(request: Usuario){
-    return this.http.post<Usuario>(
+  Register(request: UsuarioClass){
+    return this.http.post<UsuarioClass>(
       this.apiUrl,request
     );
   }

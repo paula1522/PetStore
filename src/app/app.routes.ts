@@ -33,7 +33,7 @@ export const routes: Routes = [
 
   {
     path: 'home',
-    
+    canActivate: [authGuard],
     component: HomeComponent
   },
 

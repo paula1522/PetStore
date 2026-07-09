@@ -247,14 +247,14 @@
                 <!-- Botones -->
                 <div class="md:col-span-2 flex flex-col md:flex-row justify-center gap-4 mt-6">
 
-                    <button type="button" routerLink="/register"
+                    <button type="button"  (click)="cancelarRegistro()"
                         class="btn-secondary w-full md:w-2/5 py-3 rounded-full transition">
 
                         Cancelar registro
 
                     </button>
 
-                    <button type="submit" (click)="CancelarRegistro()"
+                    <button type="submit" routerLink="/register"
                         class="btn-primary w-full md:w-2/5 py-3 rounded-full transition">
 
                         Crear cuenta

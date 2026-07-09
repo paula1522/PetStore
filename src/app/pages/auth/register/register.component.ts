@@ -1,4 +1,3 @@
-import { Usuario } from './../../../core/models/User.model';
 import { UserService } from './../../../services/api/user.service';
 import { CommonModule } from '@angular/common';
 import { ValidacionesPropias } from './../../../utils/validaciones-propias';
@@ -6,7 +5,8 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { UtilFunction } from '../../../utils/general-function/util-function';
 import { Router, RouterLink } from '@angular/router';
-import { Subject, takeUntil, tap, timer } from 'rxjs';
+import { Subject, switchMap, takeUntil, tap, timer } from 'rxjs';
+import { UsuarioClass } from '../../../core/models/User.model';
 
 
 @Component({
@@ -29,8 +29,7 @@ export class RegisterComponent {
   UtilFunction = UtilFunction;
 
 
-  RegisterForm = this.fb.group({
-    id: [0],
+  RegisterForm = this.fb.nonNullable.group({
     username: ['', [Validators.required]],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -41,7 +40,6 @@ export class RegisterComponent {
     Validators.minLength(6),
     Validators.maxLength(20)]],
     confirmPassword: ['', Validators.required],
-    userStatus: [1],
 
   }, {
     validators: [ValidacionesPropias.passwordMatchValidator
@@ -95,37 +93,48 @@ export class RegisterComponent {
 
 
   /*Función específica para guardar el registro del usuario*/
-  guardarRegistro(): void {
+   guardarRegistro() {
+
+  console.log('1. Se presionó Crear cuenta');
 
   if (this.RegisterForm.invalid) {
+    console.log('2. Formulario inválido');
     this.RegisterForm.markAllAsTouched();
     return;
   }
 
-  const formRegister = this.RegisterForm.getRawValue();
+  console.log('3. Formulario válido');
 
-  const request = new Usuario(
-    formRegister.username!,
-    formRegister.firstName!,
-    formRegister.lastName!,
-    formRegister.email!,
-    formRegister.password!,
-    formRegister.phone!
-  );
- this.UserService.Register(request).pipe(
+  const request = new UsuarioClass(this.RegisterForm.getRawValue());
+
+  console.log('4. Esperando 5 segundos...');
+
+  timer(5000)
+    .pipe(
+      tap(() => console.log('5. Terminó el timer')),
+      takeUntil(this.destruir$),
+      switchMap(() => {
+        console.log('6. Enviando petición al servidor');
+        return this.UserService.Register(request);
+      }),
       tap(response => {
-        console.log('Usuario registrado', response);
-        this.router.navigate(['/home']);
-        
+        console.log('7. Usuario registrado', response);
+        this.router.navigate(['/login']);
       })
-    ).subscribe ({
-      error: (error) => {
-        console.error('Error al registrar', error);
+    )
+    .subscribe({
+      error: error => {
+        console.error(error);
       }
     });
+}
 
 
+cancelarRegistro(): void {
+  console.log('Se cancelo Registro');
+  this.destruir$.next();
+  this.RegisterForm.reset(); 
 
-  }
+}
 
 }
