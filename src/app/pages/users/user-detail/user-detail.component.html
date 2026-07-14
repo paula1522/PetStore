@@ -1,1 +1,17 @@
-<p>user-detail works!</p>
+
+<p>Usuarios</p>
+
+<button
+  *ngIf="authService.tienePermiso(18)"
+  type="button"
+  class="btn-primary py-3 px-6 rounded-full transition">
+  Descargar clientes en pdf
+</button>
+
+<button
+  *ngIf="authService.tienePermiso(18)"
+  type="button"
+  class="btn-primary py-3 px-6 rounded-full transition">
+  Descargar clientes
+</button>
+<p></p>

@@ -2,16 +2,16 @@ import { Routes } from '@angular/router';
 
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
-import { HomeComponent } from './pages/home/home.component';
 
+import { HomeComponent } from './pages/home/home.component';
 import { PetsComponent } from './pages/pets/pets.component';
 import { UsersComponent } from './pages/users/users.component';
 
 import { authGuard } from './core/guards/auth.guard';
+import { authPerfilGuard } from './core/guards/auth-perfil.guard';
 
 import { petsRoutes } from './pages/pets/pets.routes';
 import { usersRoutes } from './pages/users/users.routes';
-import { authPerfilGuard } from './core/guards/auth-perfil.guard';
 
 export const routes: Routes = [
 
@@ -32,23 +32,29 @@ export const routes: Routes = [
   },
 
   {
-    path: 'home',
+    path: '',
     canActivate: [authGuard],
-    component: HomeComponent
-  },
+    children: [
 
-  {
-    path: 'pets',
-    component: PetsComponent,
-    canActivate: [authGuard],
-    children: petsRoutes
-  },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
 
-  {
-    path: 'users',
-    component: UsersComponent,
-    canActivate: [authPerfilGuard],
-    children: usersRoutes
+      {
+        path: 'pets',
+        component: PetsComponent,
+        children: petsRoutes
+        
+      },
+
+      {
+        path: 'users',
+        component: UsersComponent,
+        children: usersRoutes
+      }
+
+    ]
   },
 
   {

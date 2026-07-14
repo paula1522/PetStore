@@ -14,11 +14,11 @@ export class UserService {
 
 
 //Login
-  Login(username: string, password: string) {
+  /*Login(username: string, password: string) {
     return this.http.get(
       `${this.apiUrl}/login?username=${username}&password=${password}`
     );
-  }
+  }*/
 
 
   //Buscar user por username

@@ -1,6 +1,7 @@
+import { routes } from './../../app.routes';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/logic/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class HeaderComponent {
 nombre='';
 
   private authService = inject(AuthService);
-
+  private router = inject(Router);
   ngOnInit(): void {
     const sesion = this.authService.obtenerSesion();
 
@@ -24,6 +25,12 @@ nombre='';
   }
 
 
+cerrarSesion(): void {
 
+    this.authService.cerrarSesion();
+
+    this.router.navigate(['/login']);
+
+  }
 
 }

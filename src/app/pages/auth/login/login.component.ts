@@ -6,6 +6,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { GetUserRequest, GetUserResponse } from '../../../core/models/GetUser.model';
+import { PermisosService } from '../../../services/api/permisos.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
   private router = inject(Router);
   private UserService = inject(UserService);
   private authService = inject(AuthService);
+  private permisosService = inject(PermisosService);
 
 
   constructor(private fb: FormBuilder) { }
@@ -76,10 +78,28 @@ export class LoginComponent {
 
         console.log('Sesión guardada');
 
-        alert(`Bienvenido ${user.username}`);
+        // Consumir permisos
+        this.permisosService.obtenerPermisos().subscribe({
 
-        this.router.navigate(['/home']);
+          next: (permisos) => {
+
+            this.authService.guardarPermisos(permisos);
+
+            console.log('Permisos guardados');
+
+            alert(`Bienvenido ${user.username}`);
+
+            this.router.navigate(['/home']);
+
+          },
+          error: (error) => {
+            console.error('Error obteniendo permisos', error);
+          }
+
+        });
+
       },
+
 
       error: (error) => {
         console.log('Usuario no exite');

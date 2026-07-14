@@ -1,19 +1,29 @@
 <nav class="bg-white shadow-sm sticky top-0 z-50 px-6 lg:px-16 py-4 flex items-center justify-between">
-  <a href="#" class="flex items-center gap-2">
+  <a routerLink="/home" class="flex items-center gap-2">
     <img src="favicon.ico" alt="PetStore Logo" class="w-20 h-20">
     <div>
-      <div><span class="text-2xl font-black text-[#8A56F3]">Pet</span><span class="text-2xl font-black text-[#6D6DC6]">Store</span></div>
-      <p class="text-[10px] text-[#8A8DC4] tracking-widest -mt-0.5">TODO PARA TU MASCOTA</p>
+      <div>
+        <span class="text-2xl font-black text-[#8A56F3]">Pet</span>
+        <span class="text-2xl font-black text-[#6D6DC6]">Store</span>
+      </div>
+      <p class="text-[10px] text-[#8A8DC4] tracking-widest -mt-0.5">
+        TODO PARA TU MASCOTA
+      </p>
     </div>
   </a>
 
   <ul class="hidden md:flex items-center gap-8 text-[#6D6DC6] font-semibold text-sm">
-    <!--<li><a routerLink="/pets" class="hover:text-[#8A56F3] transition-colors">Mascotas</a></li>
-    <li><a routerLink="/users" class="hover:text-[#8A56F3] transition-colors">Pedidos </a></li>-->
-    <span>Hola {{nombre}} !</span>
-  </ul>
+    <li>Hola {{ nombre }} !!</li>
 
-  
+    <li>
+      <button
+        type="button"
+        (click)="cerrarSesion()"
+        class="hover:text-[#8A56F3] transition-colors">
+        Cerrar sesión
+      </button>
+    </li>
+  </ul>
 </nav>
 
 <!--img ( https://cdn-icons-png.flaticon.com/512/616/616408.png )-->
