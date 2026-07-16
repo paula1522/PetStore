@@ -9,7 +9,7 @@ export const usersRoutes: Routes = [
     path: '',
     component: UserListComponent,
     canActivate: [authPerfilGuard],
-    data: { permiso: 12 }
+    data: { permiso: 19 }
   },
   {
     path: 'create',

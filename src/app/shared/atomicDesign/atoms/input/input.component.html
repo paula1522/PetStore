@@ -1,0 +1,19 @@
+<div class="relative">
+
+  <input
+    [type]="type"
+    [placeholder]="placeholder"
+    class="peer w-full py-2 input-line">
+
+  <label
+    class="absolute left-0 -top-4 text-sm text-primary
+           peer-placeholder-shown:top-2
+           peer-placeholder-shown:text-base
+           peer-focus:-top-4
+           peer-focus:text-sm">
+
+    {{ label }}
+
+  </label>
+
+</div>

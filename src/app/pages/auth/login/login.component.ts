@@ -7,11 +7,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { GetUserRequest, GetUserResponse } from '../../../core/models/GetUser.model';
 import { PermisosService } from '../../../services/api/permisos.service';
+import { ButtonComponent } from '../../../shared/atomicDesign/atoms/button/button.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

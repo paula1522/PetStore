@@ -66,13 +66,14 @@
 
         </div>
         
-        <button  type="submit"
-        [disabled]="loginForm.invalid"
-        class="btn-primary mx-auto w-full md:w-3/5 py-3 rounded-full transition">
-
-          Ingresar
-
-        </button>
+        
+<div class="mx-auto w-full md:w-3/5">
+  <app-button
+      text="Ingresar"
+      type="submit"
+      [disabled]="loginForm.invalid">
+  </app-button>
+</div>
         
 
       </form>

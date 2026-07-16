@@ -16,19 +16,35 @@ export interface UserResponse{
 }*/
 
 export class UsuarioClass {
+id: number;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phone: string;
+  userStatus: number;
 
-  id!: 0;
-  username!: string;
-  firstName!: string;
-  lastName!: string;
-  email!: string;
-  password!: string;
-  phone!: string;
-  userStatus!: 1;
-
-  constructor(init?: Partial<UsuarioClass>) {
-    Object.assign(this, init);
+  constructor(
+    username: string,
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  phone: string
+  ) {
+    this.id = 0;
+    this.username = username;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  this.password = password;
+  this.phone= phone;
+    this.userStatus = 1;
   }
+  /*constructor(init?: Partial<UsuarioClass>) {
+    Object.assign(this, init);
+  }*/
 
   getNombreCompleto(): string {
     return `${this.firstName} ${this.lastName}`;

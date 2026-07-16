@@ -105,7 +105,15 @@ export class RegisterComponent {
 
   console.log('3. Formulario válido');
   console.log(this.RegisterForm.value);
-  const request = new UsuarioClass(this.RegisterForm.getRawValue());
+
+  const request = new UsuarioClass(
+  this.RegisterForm.controls.username.value,
+  this.RegisterForm.controls.firstName.value,
+  this.RegisterForm.controls.lastName.value,
+  this.RegisterForm.controls.email.value,
+  this.RegisterForm.controls.password.value,
+  this.RegisterForm.controls.phone.value
+);
 
   console.log('4. Esperando 5 segundos...');
 

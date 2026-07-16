@@ -1,0 +1,22 @@
+$border: #A9ACD6;
+$focus: #4A4ED4;
+$text: #8A8DC4;
+
+.input-line {
+
+  border: none;
+  border-bottom: 1.5px solid $border;
+  color: $text;
+  background: transparent;
+
+  &:focus {
+    outline: none;
+    border-bottom-color: $focus;
+  }
+
+}
+
+.text-primary {
+  color: $text;
+}
+
