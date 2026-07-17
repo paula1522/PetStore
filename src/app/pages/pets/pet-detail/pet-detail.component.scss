@@ -1,0 +1,34 @@
+@use '../../../../assets/variables' as *;
+
+.container{
+    min-height:100vh;
+    align-items:center;
+    padding:2rem;
+}
+
+.user-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+
+    li{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:14px 0;
+        border-bottom:1px solid $tertiary;
+    }
+
+    li:last-child{
+        border-bottom:none;
+    }
+
+    .label{
+        color:$primary;
+        font-weight:600;
+    }
+
+    span:last-child{
+        color:black;
+    }
+}

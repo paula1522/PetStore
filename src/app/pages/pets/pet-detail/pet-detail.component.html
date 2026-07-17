@@ -1,1 +1,48 @@
-<p>pet-detail works!</p>
+<div class="container">
+  <div class="card w-full max-w-md bg-white rounded-2xl shadow-[0_10px_35px_rgba(138,86,243,0.25)] border border-purple-100">
+
+    <div class="card-body p-8">
+
+      <h2 class="text-2xl font-bold text-[#6D6DC6] text-center mb-6">
+        Información del Usuario
+      </h2>
+
+      <ul class="user-list">
+
+        <li>
+          <span class="label">Usuario: </span>
+          <span>{{ usuario.username }}</span>
+        </li>
+
+        <li>
+          <span class="label">Nombre: </span>
+          <span>{{ usuario.firstName }}</span>
+        </li>
+
+        <li>
+          <span class="label">Apellido: </span>
+          <span>{{ usuario.lastName }}</span>
+        </li>
+
+        <li>
+          <span class="label">Correo: </span>
+          <span>{{ usuario.email }}</span>
+        </li>
+
+        <li>
+          <span class="label">Teléfono: </span>
+          <span>{{ usuario.phone }}</span>
+        </li>
+
+        
+
+      </ul>
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
