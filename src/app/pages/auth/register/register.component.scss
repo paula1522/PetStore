@@ -1,35 +1,23 @@
-
-/* ===========================
-   PALETA DE COLORES
-=========================== */
-
-// Colores principales
-$primary: #8A56F3;
-$secondary: #7445DD;
-$tertiary:#A9ACD6;
-
-$title: #6D6DC6;
-$text: #8A8DC4;
-$text-white: #fff;
-$text-error: #979695;
+@use '../../../../assets/variables' as *;
 
 
-$border: #A9ACD6;
-$focus: #4A4ED4;
 
-$panel-start: #6D70E0;
-$panel-end: #5457D8;
 
-$background-start: #8531E7;
-$background-end: #2E258E;
+.register-page{
+  min-height: 100vh;
+
+  background: linear-gradient(
+    to right,
+    $background-start,
+    $background-end
+  );
+}
 
 
 .panel {
-  background: linear-gradient(
-    135deg,
-    $panel-start,
-    $panel-end
-  );
+  background: linear-gradient(135deg,
+      $panel-start,
+      $panel-end );
 }
 
 .title {
@@ -51,11 +39,11 @@ $background-end: #2E258E;
   }
 }
 
-.btn-primary{
-  
+.btn-primary {
+
   background: $primary;
   color: $text-white;
-  
+
 
   &:hover:not(:disabled) {
     background: $secondary;
@@ -92,7 +80,8 @@ $background-end: #2E258E;
 
 i {
   color: $text;
-  &:focus{
+
+  &:focus {
     padding-bottom: 4px;
   }
 }

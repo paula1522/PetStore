@@ -10,27 +10,27 @@
         <span class="text-[#8A56F3]">con Amor </span><span class="text-[#2E258E]">para</span><br>
         <span class="text-[#2E258E]">tu Mascota</span>
       </h1>
-      
+
       <p class="text-[#8A8DC4] text-lg leading-relaxed mb-8 max-w-md">
         En PetStore entendemos la alegría que tus mascotas traen a tu vida. Nuestra misión es garantizar que reciban el
         mejor cuidado posible, desde alimentación hasta accesorios premium.
       </p>
       <div class="flex flex-wrap gap-4">
 
-        <a routerLink="/users"
-          class="border-2 border-[#A9ACD6] text-[#6D6DC6] font-bold px-7 py-3.5 rounded-full hover:border-[#8A56F3] hover:text-[#8A56F3] transition-all">
-          Ver usuarios
-        </a>
+
+        <app-button text="Ver mascotas" variant="secondary" routerLink="/pets/create">
+        </app-button>
       </div>
+
     </div>
 
     <!-- Ilustración -->
     <div class="relative flex items-center justify-center">
       <div class="hero-glow"></div>
 
-      <img src="assets/hero1.png" alt="Mascota feliz"
+      <img src="assets/img/hero1.png" alt="Mascota feliz"
         class="hero-image w-80 h-80 lg:w-[28rem] lg:h-[28rem] object-contain drop-shadow-[0_15px_30px_rgba(99,102,241,0.5)]" />
     </div>
-    
+
   </div>
 </section>

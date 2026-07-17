@@ -1,35 +1,21 @@
 
-/* ===========================
-   PALETA DE COLORES
-=========================== */
+@use '../../../../assets/variables' as *;
 
-// Colores principales
-$primary: #8A56F3;
-$secondary: #7445DD;
-$tertiary:#A9ACD6;
+.login-page{
+  min-height: 100vh;
 
-$title: #6D6DC6;
-$text: #8A8DC4;
-$text-white: #fff;
-$text-error: #979695;
-
-
-$border: #A9ACD6;
-$focus: #4A4ED4;
-
-$panel-start: #6D70E0;
-$panel-end: #5457D8;
-
-$background-start: #8531E7;
-$background-end: #2E258E;
+  background: linear-gradient(
+    to right,
+    $background-start,
+    $background-end
+  );
+}
 
 
 .panel {
-  background: linear-gradient(
-    135deg,
-    $panel-start,
-    $panel-end
-  );
+  background: linear-gradient(135deg,
+      $panel-start,
+      $panel-end );
 }
 
 .title {
