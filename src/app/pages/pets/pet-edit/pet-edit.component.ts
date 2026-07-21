@@ -13,13 +13,10 @@ export class PetEditComponent {
 petId: any;
 ngOnInit() {
 
-    this.route.paramMap.subscribe(params => {
+    // Obtiene el parámetro una sola vez
+  this.petId = this.route.snapshot.paramMap.get('petId');
 
-      this.petId = params.get('petId')!;
-
-      console.log('Pet ID:', this.petId);
-
-    });
+  console.log('Pet ID:', this.petId);
 
   }
 }

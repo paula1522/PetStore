@@ -31,7 +31,7 @@
           </label>
 
 
-          <div *ngIf="RegistrosNoValido">
+          <div *ngIf="registrosNoValido">
             <div *ngFor="let validation of count_validation_messages.username">
               <small class="absolute left-0 "
                 *ngIf="UtilFunction.validarError(loginForm, 'username', validation.type)">{{
@@ -56,7 +56,7 @@
 
           </label>
 
-          <div *ngIf="RegistrosNoValido">
+          <div *ngIf="registrosNoValido">
             <div  *ngFor="let validation of count_validation_messages.password">
               <small class="absolute left-0 "
                 *ngIf="UtilFunction.validarError(loginForm, 'password', validation.type)">{{

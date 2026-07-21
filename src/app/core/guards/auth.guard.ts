@@ -3,16 +3,20 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 export const authGuard: CanActivateFn = (route, state) => {
+
+  // 1. Inyección de dependencias.
+  // Inyecta los servicios necesarios para validar la autenticación y realizar redirecciones.
   const router = inject(Router);
-  const authService =inject(AuthService);
+  const authService = inject(AuthService);
 
-
+  // 2. Validación de autenticación.
+  // Permite el acceso si el usuario tiene una sesión válida.
   if (authService.estaAutenticado()) {
-    // El usuario está autenticado, permite el acceso
     return true;
-  } else {
-    // Redirige al login si la cookie no existe o es inválida
-    router.navigate(['/login']);
-    return false;
   }
+
+  // 3. Redirección por sesión no válida.
+  // Envía al usuario al inicio de sesión si no está autenticado.
+  router.navigate(['/login']);
+  return false;
 };

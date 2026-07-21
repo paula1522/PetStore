@@ -15,8 +15,11 @@ export interface UserResponse{
     message:        string;
 }*/
 
+// Modelo que representa un usuario de la aplicación.
 export class UsuarioClass {
-id: number;
+
+  // 1. Propiedades del usuario.
+  id: number;
   username: string;
   firstName: string;
   lastName: string;
@@ -25,31 +28,31 @@ id: number;
   phone: string;
   userStatus: number;
 
+  // 2. Inicialización del modelo.
   constructor(
     username: string,
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  phone: string
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    phone: string
   ) {
     this.id = 0;
     this.username = username;
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-  this.password = password;
-  this.phone= phone;
+    this.password = password;
+    this.phone = phone;
     this.userStatus = 1;
   }
-  /*constructor(init?: Partial<UsuarioClass>) {
-    Object.assign(this, init);
-  }*/
 
+  // 3. Obtiene el nombre completo del usuario.
   getNombreCompleto(): string {
     return `${this.firstName} ${this.lastName}`;
   }
 
+  // 4. Obtiene el estado del usuario en formato texto.
   getEstado(): string {
     return this.userStatus === 1 ? "Activo" : "Inactivo";
   }

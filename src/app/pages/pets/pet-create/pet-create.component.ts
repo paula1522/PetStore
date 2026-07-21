@@ -26,7 +26,7 @@ irDetalle() {
   console.log('Entró al botón');
 
   this.router.navigate(
-    ['/pets', 67],
+    ['/pets'],
     {
       state: {
         usuario: this.cliente
