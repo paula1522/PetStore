@@ -1,18 +1,14 @@
-import { Component, inject } from '@angular/core';
-import { ButtonComponent } from "../../../shared/atomicDesign/atoms/button/button.component";
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pet-detail',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [],
   templateUrl: './pet-detail.component.html',
   styleUrl: './pet-detail.component.scss'
 })
-export class PetDetailComponent {
-private route = inject(ActivatedRoute);
+export class PetDetailComponent implements OnInit {
 usuario:any;
-  petId: any;
 ngOnInit() {
     // Accedemos al estado pasado en la navegación
     this.usuario = history.state.usuario;

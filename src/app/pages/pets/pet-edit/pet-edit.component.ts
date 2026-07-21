@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-pet-edit',
@@ -8,15 +9,28 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './pet-edit.component.html',
   styleUrl: './pet-edit.component.scss'
 })
-export class PetEditComponent {
+export class PetEditComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
-petId: any;
-ngOnInit() {
+  private destrtoy$ = new Subject<void>;
+  petId: any;
+  
+  ngOnInit() {
 
-    // Obtiene el parámetro una sola vez
-  this.petId = this.route.snapshot.paramMap.get('petId');
+    this.route.paramMap.subscribe(params => {
 
-  console.log('Pet ID:', this.petId);
+      this.petId = params.get('petId')!;
+
+      console.log('Pet ID:', this.petId);
+
+    });
+
+  }
+
+
+  ngOnDestroy(){
+    this.destrtoy$.next();
+    this.destrtoy$.complete();
+        console.log('Componente destruido y desuscrito');
 
   }
 }

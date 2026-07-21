@@ -5,45 +5,56 @@ import { ButtonComponent } from "../../../shared/atomicDesign/atoms/button/butto
 @Component({
   selector: 'app-pet-create',
   standalone: true,
-  imports: [ ButtonComponent],
+  imports: [ButtonComponent],
   templateUrl: './pet-create.component.html',
   styleUrl: './pet-create.component.scss'
 })
 export class PetCreateComponent {
 
-private route = inject(ActivatedRoute);
-private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
- cliente: any;
-ngOnInit() {
-  this.route.data.subscribe(({cliente})=>{
-    console.log(cliente)
-    this.cliente=cliente;
-  })
-}
+  cliente: any;
 
-irDetalle() {
-  console.log('Entró al botón');
+  ngOnInit() {
 
-  this.router.navigate(
-    ['/pets'],
-    {
-      state: {
-        usuario: this.cliente
+    console.log(`ngOnInit: En este componente estoy obteniendo el objeto "cliente" que fue cargado por el Resolver de la ruta mediante ActivatedRoute.data.`);
+
+    this.route.data.subscribe(({ cliente }) => {
+
+      this.cliente = cliente;
+
+      console.log("Cliente recibido desde el Resolver:", this.cliente);
+
+    });
+
+  }
+
+  irDetalle() {
+
+    console.log(`Navegando a PetDetail.Estoy enviando el objeto "cliente" mediante Route State.`);
+
+    this.router.navigate(
+      ['/pets', 67],
+      {
+        state: {
+          usuario: this.cliente
+        }
       }
-    }
-  );
-}
+    );
 
-irDetallePath() {
-  console.log('Enviando petId por path');
+  }
 
-  this.router.navigate([
-    '/pets',
-    67,
-    'edit'
-  ]);
-}
+  irDetallePath() {
 
- 
+    console.log(`Navegando a PetEdit.Estoy enviando el ID de la mascota como parámetro de la ruta Route Path.`);
+
+    this.router.navigate([
+      '/pets',
+      67,
+      'edit'
+    ]);
+
+  }
+
 }
