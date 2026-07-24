@@ -6,14 +6,20 @@ import { PetEditComponent } from './pet-edit/pet-edit.component';
 import { UploadImageComponent } from './upload-image/upload-image.component';
 import { FindByStatusComponent } from './find-by-status/find-by-status.component';
 import { FindByTagsComponent } from './find-by-tags/find-by-tags.component';
-import { authGuard } from '../../core/guards/auth.guard';
 import { authPerfilGuard } from '../../core/guards/auth-perfil.guard';
 import { clienteResolver } from './cliente-resolver.resolver';
+import { PetsComponent } from './pets.component';
 
 
 export const petsRoutes: Routes = [
   {
     path: '',
+    component: PetsComponent,
+    canActivate: [authPerfilGuard],
+    data: { permiso: 1 }
+  },
+  {
+    path: 'list',
     component: PetListComponent,
     canActivate: [authPerfilGuard],
     data: { permiso: 1 }
@@ -26,7 +32,7 @@ export const petsRoutes: Routes = [
     resolve:{cliente: clienteResolver}
   },
   {
-    path: ':petId',
+    path: 'detalle',
     component: PetDetailComponent,
     canActivate: [authPerfilGuard],
     data: { permiso: 1 }

@@ -1,29 +1,88 @@
-<nav class="bg-white shadow-sm sticky top-0 z-50 px-6 lg:px-16 py-4 flex items-center justify-between">
-  <a routerLink="/home" class="flex items-center gap-2">
-    <img src="favicon.ico" alt="PetStore Logo" class="w-20 h-20">
-    <div>
+<nav class="sticky top-0 z-50 bg-white shadow-sm">
+
+  <div class="max-w-7xl mx-auto h-20 px-6 lg:px-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a routerLink="/home" class="flex items-center gap-3">
+
+      <img src="favicon.ico" alt="PetStore Logo" class="h-14 w-14 object-contain">
+
       <div>
-        <span class="text-2xl font-black text-[#8A56F3]">Pet</span>
-        <span class="text-2xl font-black text-[#6D6DC6]">Store</span>
+        <h1 class="leading-none">
+          <span class="text-2xl font-black text-[#8A56F3]">Pet</span>
+          <span class="text-2xl font-black text-[#6D6DC6]">Store</span>
+        </h1>
+
+        <p class="text-[10px] text-[#8A8DC4] tracking-[3px] uppercase">
+          Todo para tu mascota
+        </p>
       </div>
-      <p class="text-[10px] text-[#8A8DC4] tracking-widest -mt-0.5">
-        TODO PARA TU MASCOTA
-      </p>
+
+    </a>
+
+    <!-- Menú Desktop -->
+    <div class="hidden md:flex items-center gap-6">
+
+      <span class="font-semibold text-[#6D6DC6]">
+        Hi {{ nombre }} !!
+      </span>
+
+
+      <app-button icon="fa-solid fa-paw" variant="icon" [fullWidth]="false" 
+          routerLink="/pets">
+      </app-button>
+
+      <app-button icon="fa fa-users" variant="icon" [fullWidth]="false"
+      routerLink="/users">
+      </app-button>
+
+      <app-button icon="fa fa-sign-out" variant="icon" [fullWidth]="false" (buttonClick)="cerrarSesion()">
+      </app-button>
+
+
     </div>
-  </a>
 
-  <ul class="hidden md:flex items-center gap-8 text-[#6D6DC6] font-semibold text-sm">
-    <li>Hola {{ nombre }} !!</li>
+    <!-- Botón Menú Móvil -->
+    <button class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition" (click)="menuAbierto = !menuAbierto">
 
-    <li>
-      <button
-        type="button"
-        (click)="cerrarSesion()"
-        class="hover:text-[#8A56F3] transition-colors">
-        Cerrar sesión
-      </button>
-    </li>
-  </ul>
+      @if(!menuAbierto){
+      <i class="fa fa-bars text-[#6D6DC6]">
+
+      </i>
+      } @else {
+      <i class=" fa fa-x text-[#6D6DC6]">
+
+      </i>
+      }
+
+    </button>
+
+  </div>
+
+  <!-- Menú Móvil -->
+  @if(menuAbierto){
+
+  <div class="md:hidden border-t bg-white shadow-md bg-white">
+
+    <div class="flex flex-col px-4 py-4 ">
+
+      <span class="font-semibold text-[#6D6DC6] text-center mb-2">
+        Hola {{ nombre }} 
+      </span>
+
+      <app-button text="Mascotas" icon="fa-solid fa-paw" variant="menu">
+      </app-button>
+
+      <app-button text="Usuarios" icon="fa fa-users" variant="menu">
+      </app-button>
+
+      <app-button text="Cerrar sesión" icon="fa fa-sign-out" variant="menu" (buttonClick)="cerrarSesion()">
+      </app-button>
+
+    </div>
+
+  </div>
+
+  }
+
 </nav>
-
-<!--img ( https://cdn-icons-png.flaticon.com/512/616/616408.png )-->

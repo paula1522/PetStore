@@ -11,18 +11,16 @@ import { RouterEvent, RouterLink } from '@angular/router';
 })
 export class ButtonComponent {
 
- @Input() text: string = '';
- @Input() icon = '';
+  @Input() text: string = '';
+  @Input() icon = '';
 
   @Input() type: 'button' | 'submit' = 'button';
 
   @Input() disabled: boolean = false;
 
-  @Input() variant: 'primary' | 'secondary' = 'primary';
-
-    @Input() routerLink = '';
-
-    @Input() fullWidth = true;
+@Input() variant: 'primary' | 'secondary' | 'icon' | 'menu' = 'primary';
+@Input() routerLink?: string | any[];
+  @Input() fullWidth = true;
   @Output() buttonClick = new EventEmitter<void>();
 
 }

@@ -1,11 +1,13 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
+import { ButtonComponent } from "../../../shared/atomicDesign/atoms/button/button.component";
+import { CardComponent } from '../../../shared/atomicDesign/molecules/card/card.component';
 
 @Component({
   selector: 'app-pet-edit',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent, CardComponent],
   templateUrl: './pet-edit.component.html',
   styleUrl: './pet-edit.component.scss'
 })

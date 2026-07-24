@@ -1,11 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, inject } from '@angular/core';
 import { ButtonComponent } from "../../../shared/atomicDesign/atoms/button/button.component";
+import { CardComponent } from "../../../shared/atomicDesign/molecules/card/card.component";
 
 @Component({
   selector: 'app-pet-create',
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, CardComponent],
   templateUrl: './pet-create.component.html',
   styleUrl: './pet-create.component.scss'
 })
@@ -35,7 +36,7 @@ export class PetCreateComponent {
     console.log(`Navegando a PetDetail.Estoy enviando el objeto "cliente" mediante Route State.`);
 
     this.router.navigate(
-      ['/pets', 67],
+      ['/pets/detalle'],
       {
         state: {
           usuario: this.cliente

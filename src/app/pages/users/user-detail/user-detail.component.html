@@ -1,17 +1,8 @@
-
 <p>Usuarios</p>
 
-<button
-  *ngIf="authService.tienePermiso(18)"
-  type="button"
-  class="btn-primary py-3 px-6 rounded-full transition">
-  Descargar clientes en pdf
-</button>
-
-<button
-  *ngIf="authService.tienePermiso(19)"
-  type="button"
-  class="btn-primary py-3 px-6 rounded-full transition">
-  Descargar clientes
-</button>
-<p></p>
+<div class="flex  gap-4 py-4">
+  <app-button class="w-48" *ngIf="authService.tienePermiso(18)" text="Descargar clientes en pdf" type="button">
+  </app-button>
+  <app-button class="w-48" *ngIf="authService.tienePermiso(8)" text="Descargar clientes " type="button">
+  </app-button>
+</div>

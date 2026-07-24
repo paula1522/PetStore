@@ -1,0 +1,49 @@
+@use '../../../../../assets/variables' as *;
+
+table{
+    min-width:100%;
+}
+
+thead{
+
+    position: sticky;
+    top:0;
+    z-index:10;
+
+    background: linear-gradient(
+        135deg,
+        $panel-start,
+        $panel-end
+    );
+
+    color:$text-white;
+
+    th{
+        font-weight:600;
+        letter-spacing:.5px;
+    }
+
+}
+
+tbody{
+
+    tr{
+
+        transition:.25s;
+        border-bottom:1px solid rgba($border,.3);
+
+        &:hover{
+            background:rgba($primary,.06);
+        }
+
+        &:nth-child(even){
+            background:rgba($tertiary,.15);
+        }
+
+    }
+
+    td{
+        color:$text;
+    }
+
+}

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input} from '@angular/core';
+import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -16,6 +17,7 @@ export class InputComponent {
 
   @Input() placeholder: string = '';
 
+  @Input() control!: FormControl;
 
 
 }

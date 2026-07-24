@@ -1,0 +1,52 @@
+
+<label  > {{dataSource.length}}</label>
+<div class="rounded-2xl border border-gray-200 shadow-lg bg-white">
+
+  <!-- Scroll horizontal -->
+  <div class="overflow-x-auto">
+
+    <!-- Scroll vertical -->
+    <div class="max-h-[500px] overflow-y-auto">
+
+      <table class="min-w-full border-collapse">
+
+        <thead class="sticky top-0 z-10">
+
+          <tr>
+
+            <th
+              *ngFor="let titulo of titulosTabla"
+              class="px-6 py-4 text-left font-semibold whitespace-nowrap">
+
+              {{ titulo }}
+
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr
+            *ngFor="let item of dataSource">
+
+            <td
+              *ngFor="let columna of nombreColumnas"
+              class="px-6 py-4 whitespace-nowrap">
+
+              {{ item[columna] }}
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

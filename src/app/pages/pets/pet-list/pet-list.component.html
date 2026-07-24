@@ -1,1 +1,29 @@
-<p>pet-list works!</p>
+<div class="contenedor">
+  <app-table
+    [titulosTabla]="titulos"
+    [nombreColumnas]="columnas"
+    [dataSource]="Mascotas">
+  </app-table>
+
+  <div class="contenedor-botones">
+    <app-button
+      class="w-48"
+      text="Pendientes"
+      type="button"
+      (buttonClick)="mostrarPendientes()">
+    </app-button>
+
+    <app-button
+      class="w-48"
+      text="Perro"
+      type="button"
+      (buttonClick)="mostrarPerros()">
+    </app-button>
+    <app-button
+      class="w-48"
+      text="Limpiar"
+      type="button"
+      (buttonClick)="limpiar()">
+    </app-button>
+  </div>
+</div>

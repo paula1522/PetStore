@@ -7,7 +7,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './pages/users/users.component';
 
 import { authGuard } from './core/guards/auth.guard';
-import { authPerfilGuard } from './core/guards/auth-perfil.guard';
 
 import { usersRoutes } from './pages/users/users.routes';
 
@@ -21,17 +20,23 @@ export const routes: Routes = [
 
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+      data: { showHeader: false }
+
   },
 
   {
     path: 'register',
-    component: RegisterComponent
+    component: RegisterComponent,
+      data: { showHeader: false }
+
   },
 
   {
     path: '',
     canActivate: [authGuard],
+      data: { showHeader: true },
+
     children: [
 
       {
@@ -54,7 +59,7 @@ export const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
-        children: usersRoutes
+        children: usersRoutes,
       }
 
     ]

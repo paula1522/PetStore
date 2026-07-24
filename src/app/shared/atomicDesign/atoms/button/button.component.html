@@ -1,11 +1,64 @@
+<!--
 <button
   [type]="type"
   [disabled]="disabled"
   [routerLink]="routerLink"
   (click)="buttonClick.emit()"
-  [class.w-full]="fullWidth"
+  [class.w-full]="fullWidth && variant !== 'icon'"
   [class.btn-primary]="variant === 'primary'"
   [class.btn-secondary]="variant === 'secondary'"
+  [class.btn-icon]="variant === 'icon'"
+    [class.btn-menu]="variant === 'menu'"
+
+  class="px-7 py-3.5 font-bold rounded-full transition-all flex items-center justify-center gap-2">
+
+  @if (icon) {
+    <i [class]="icon"></i>
+  }
+
+  @if (text) {
+    <span>{{ text }}</span>
+  }
+
+</button>-->
+
+@if (routerLink) {
+
+
+  <a
+  [type]="type"
+  [routerLink]="routerLink"
+  [class.w-full]="fullWidth && variant !== 'icon'"
+  [class.btn-primary]="variant === 'primary'"
+  [class.btn-secondary]="variant === 'secondary'"
+  [class.btn-icon]="variant === 'icon'"
+    [class.btn-menu]="variant === 'menu'"
+
+  class="px-7 py-3.5 font-bold rounded-full transition-all flex items-center justify-center gap-2">
+
+  @if (icon) {
+    <i [class]="icon"></i>
+  }
+
+  @if (text) {
+    <span>{{ text }}</span>
+  }
+
+</a>
+
+} @else {
+
+  <button
+  [type]="type"
+  [disabled]="disabled"
+  [routerLink]="routerLink"
+  (click)="buttonClick.emit()"
+  [class.w-full]="fullWidth && variant !== 'icon'"
+  [class.btn-primary]="variant === 'primary'"
+  [class.btn-secondary]="variant === 'secondary'"
+  [class.btn-icon]="variant === 'icon'"
+    [class.btn-menu]="variant === 'menu'"
+
   class="px-7 py-3.5 font-bold rounded-full transition-all flex items-center justify-center gap-2">
 
   @if (icon) {
@@ -17,3 +70,5 @@
   }
 
 </button>
+
+}

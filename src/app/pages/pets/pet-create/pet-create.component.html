@@ -1,26 +1,35 @@
-<div class="container">
-  <div
-    class="card w-full max-w-md bg-white rounded-2xl shadow-[0_10px_35px_rgba(138,86,243,0.25)] border border-purple-100">
-
-    <div class="card-body p-8">
-
-      <h2 class="text-2xl font-bold text-[#6D6DC6] text-center mb-6">
-        <i class="fa fa-user "></i> Infomacion del usuario {{ cliente.username }}
-      </h2>
 
 
 
+<app-card>
+
+    <div class="p-8">
+
+        <h2 class="text-2xl font-bold text-[#6D6DC6] text-center mb-6">
+
+            <i class="fa fa-user"></i>
+
+            Información del usuario {{cliente.username}}
+
+        </h2>
 
 
       <div class="flex justify-center gap-4 py-4">
-        <app-button class="w-48" text="Más Info" icon="fa-solid fa-circle-info" (buttonClick)="irDetalle()">
-        </app-button>
 
-        <app-button class="w-48" text="Ver Mascota" icon="fa-solid fa-paw" (buttonClick)="irDetallePath()">
-        </app-button>
-      </div>
+            <app-button class="w-48"
+                text="Ver datos"
+                icon="fa-solid fa-circle-info"
+                (buttonClick)="irDetalle()">
+            </app-button>
+
+            <app-button class="w-48"
+                text="Ver mascota"
+                icon="fa-solid fa-paw"
+                (buttonClick)="irDetallePath()">
+            </app-button>
+
+        </div>
 
     </div>
 
-  </div>
-</div>
+</app-card>

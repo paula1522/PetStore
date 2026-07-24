@@ -8,7 +8,7 @@ export const clienteResolver: ResolveFn<GetUserRequest> = (route, state) => {
   const userService = inject(UserService);
   const router = inject(Router);
   let request: GetUserRequest = {
-    username: "sofia"
+    username: "pau"
   };
   return userService.UserGet(request)
     .pipe(

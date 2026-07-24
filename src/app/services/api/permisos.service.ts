@@ -13,7 +13,6 @@ export class PermisosService {
 
 
 
-
     obtenerPermisos() {
         return this.http.get<{ id: number; nombre: string;}[]>
             (`${this.apiUrl}/api/permisos`);
